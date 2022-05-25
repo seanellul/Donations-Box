@@ -2,8 +2,6 @@
 
 A simple scene that uses the `decentraland-crypto-utils` library to make a MANA payment when a player clicks on a donations box
 
-<img src="screenshot/screenshot.png" width="250">
-
 This scene shows you:
 
 - How to use the crypto utils library
