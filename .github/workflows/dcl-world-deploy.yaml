@@ -1,0 +1,32 @@
+
+    name: Deploy to DCL PROD
+
+    on:
+      push:
+        branches:
+          - dcl-worlds-deploy
+    env:
+        DCL_PRIVATE_KEY: ${{ secrets.DCL_PRIVATE_KEY }}
+    jobs:
+      deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Install npm packages
+          run: |
+            npm install
+        - name: install decentraland
+          run: npm i -g decentraland@latest
+        - name: Install npm packages
+          run: |
+            npm install
+        - name: Deploy scene
+          run: |
+            if [[ -z $DCL_PRIVATE_KEY ]]; then
+              echo "DCL_PRIVATE_KEY is not set. Skipping deployment."
+              exit 0
+            else
+              dcl deploy  --no-browser --target-content https://worlds.dcl.guru
+            fi    
+  
